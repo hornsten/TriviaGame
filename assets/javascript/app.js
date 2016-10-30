@@ -3,9 +3,9 @@ $(document).ready(function() {
     var time = 30;
     var counter;
 
-    $('#stop').on('click', stop);
+    // $('#stop').on('click', stop);
 
-    $('#start').on('click', run);
+    // $('#start').on('click', run);
 
     function run() {
 
@@ -19,8 +19,12 @@ $(document).ready(function() {
         $('#timer').html('<h2>' + "Time Remaining: " + time + '</h2>');
 
         if (time === 0) {
-            stop();
+            stop(timer);
             $('#timer').html('<h2>Your time is up!</h2');
+            return;
+        } else {
+
+            write();
         }
     };
 
@@ -65,15 +69,17 @@ $(document).ready(function() {
         return '<div class="btn-group-vertical">' + choiceButtons + '</div>';
     }
 
+    function write() {
+        for (let i = 0; i < triviaQuestions.length; i++) {
+            setTimeout(function timer() {
+                $('#question').html(triviaQuestions[i].question);
+                $('#choices').html('<button type="button" class="btn btn-default">' + triviaQuestions[i].answer +
+                    choices(triviaQuestions[i].wrongChoices) + '</button>');
+            }, i * 1000);
 
 
-    for (let i = 0; i < triviaQuestions.length; i++) {
-        setTimeout(function timer() {
-            $('#question').html(triviaQuestions[i].question);
-            $('#choices').html('<button type="button" class="btn btn-default">' + triviaQuestions[i].answer +
-                choices(triviaQuestions[i].wrongChoices) + '</button>');
-        }, i * 3000);
+        }
     }
 
-
+    run();
 });
