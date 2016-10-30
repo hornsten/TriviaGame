@@ -29,7 +29,6 @@ $(document).ready(function() {
         clearInterval(counter);
     };
 
-    run();
 
     var triviaQuestions = [{
 
@@ -45,7 +44,18 @@ $(document).ready(function() {
         wrongChoices: ["Don Draper", "Fred Rogers", "Dr. Phil"],
         answer: "Richard P",
         imgsrc: '#'
-
+    }, {
+        question: "Who is your mama?",
+        id: 2,
+        wrongChoices: ["Bea Arthur", "Wilma Flintstone", "Weakest Link Lady"],
+        answer: "LaVerne V",
+        imgsrc: '#'
+    }, {
+        question: "Who is your sis?",
+        id: 3,
+        wrongChoices: ["Elvira", "Bearded Lady", "Sasha Fierce"],
+        answer: "Mimi Marmora",
+        imgsrc: '#'
     }];
 
     function choices(wrongs) {
@@ -56,7 +66,14 @@ $(document).ready(function() {
     }
 
 
-    $('#question').html(triviaQuestions[0].question);
-    $('#choices').html('<button type="button" class="btn btn-default">' + triviaQuestions[0].answer + choices(triviaQuestions[0].wrongChoices) + '</button>');
+
+    for (let i = 0; i < triviaQuestions.length; i++) {
+        setTimeout(function timer() {
+            $('#question').html(triviaQuestions[i].question);
+            $('#choices').html('<button type="button" class="btn btn-default">' + triviaQuestions[i].answer +
+                choices(triviaQuestions[i].wrongChoices) + '</button>');
+        }, i * 3000);
+    }
+
 
 });
