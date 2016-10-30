@@ -30,4 +30,33 @@ $(document).ready(function() {
     };
 
     run();
+
+    var triviaQuestions = [{
+
+        question: "Who is your grandmother?",
+        id: 0,
+        wrongChoices: ["Bea Arthur", "Wilma Flintstone", "Weakest Link Lady"],
+        answer: "LaVerne V",
+        imgsrc: '#'
+    }, {
+
+        question: "Who's your daddy?",
+        id: 1,
+        wrongChoices: ["Don Draper", "Fred Rogers", "Dr. Phil"],
+        answer: "Richard P",
+        imgsrc: '#'
+
+    }];
+
+    function choices(wrongs) {
+        var choiceButtons = wrongs.map(function(errs) {
+            return '<button type="button" class="btn btn-default">' + errs + '</button>';
+        }).join("");
+        return '<div class="btn-group-vertical">' + choiceButtons + '</div>';
+    }
+
+
+    $('#question').html(triviaQuestions[0].question);
+    $('#choices').html('<button type="button" class="btn btn-default">' + triviaQuestions[0].answer + choices(triviaQuestions[0].wrongChoices) + '</button>');
+
 });
