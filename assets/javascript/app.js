@@ -2,11 +2,11 @@ $(document).ready(function() {
 
     var time = 30;
     var counter;
-    isCorrect = false;
-    isWrong = false;
+    var correct = 0;
+    var incorrect = 0;
+    var unanswered = 0;
     var id;
     index = 0;
-
 
     function run() {
 
@@ -20,8 +20,19 @@ $(document).ready(function() {
         $('.incorrect').on('click', function() {
             stop();
             showAnswer();
-            $('#timer').hide();
+            $('#timer').html('<h2>N to the O to the No, No, NO!</h2>');
             setTimeout(run, 1000 * 5);
+            incorrect++;
+            console.log(incorrect);
+        });
+
+        $('.correct').on('click', function() {
+            stop();
+            showAnswer();
+            $('#timer').html('<h2>You got it!</h2>');
+            setTimeout(run, 1000 * 5);
+            correct++;
+            console.log(correct);
         });
 
 
@@ -39,6 +50,8 @@ $(document).ready(function() {
             $('#timer').html('<h2>Your time is up!</h2');
             showAnswer();
             setTimeout(run, 1000 * 5);
+            unanswered++;
+            console.log(unanswered);
 
         }
     };
@@ -91,8 +104,12 @@ $(document).ready(function() {
         var choiceButtons = wrongs.map(function(errs) {
             return '<button type="button" class="btn btn-default incorrect">' + errs + '</button>';
         }).join("");
+
         return choiceButtons;
+
+
     }
+
 
     function write(index) {
 
@@ -103,9 +120,6 @@ $(document).ready(function() {
 
         }
     }
-
-
-
 
     run();
 
