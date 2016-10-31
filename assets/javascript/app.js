@@ -7,18 +7,27 @@ $(document).ready(function() {
     var id;
     index = 0;
 
-    //$('.stop').on('click', stop(time));
-
-    // $('#start').on('click', run);
 
     function run() {
 
         counter = setInterval(decrement, 1000);
         write(index);
         time = 30;
+        $('#timer').show();
         $('#choices').show();
         $("#imageBox").hide();
+
+        $('.incorrect').on('click', function() {
+            stop();
+            showAnswer();
+            $('#timer').hide();
+            setTimeout(run, 1000 * 5);
+        });
+
+
     };
+
+
 
     function decrement() {
         time--;
@@ -26,7 +35,7 @@ $(document).ready(function() {
         $('#timer').html('<h2>' + "Time Remaining: " + time + '</h2>');
 
         if (time === 0) {
-            stop(counter);
+            stop();
             $('#timer').html('<h2>Your time is up!</h2');
             showAnswer();
             setTimeout(run, 1000 * 5);
@@ -45,7 +54,9 @@ $(document).ready(function() {
     function stop() {
 
         clearInterval(counter);
+
     };
+
 
 
     var triviaQuestions = [{
@@ -78,9 +89,9 @@ $(document).ready(function() {
 
     function choices(wrongs) {
         var choiceButtons = wrongs.map(function(errs) {
-            return '<button type="button" class="btn btn-default stop">' + errs + '</button>';
+            return '<button type="button" class="btn btn-default incorrect">' + errs + '</button>';
         }).join("");
-        return '<div class="btn-group-vertical">' + choiceButtons + '</div>';
+        return choiceButtons;
     }
 
     function write(index) {
@@ -88,8 +99,7 @@ $(document).ready(function() {
         for (i = 0; i < 4; i++) {
 
             $('#question').html(triviaQuestions[index].question);
-            $('#choices').html('<button type="button" class="btn btn-default">' + triviaQuestions[index].answer +
-                choices(triviaQuestions[index].wrongChoices) + '</button>');
+            $('#choices').html('<button type="button" class="btn btn-default correct">' + triviaQuestions[index].answer + '</button>' + choices(triviaQuestions[index].wrongChoices));
 
         }
     }
