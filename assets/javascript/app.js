@@ -15,7 +15,9 @@ $(document).ready(function() {
 
         counter = setInterval(decrement, 1000);
         write(index);
-
+        time = 30;
+        $('#choices').show();
+        $("#imageBox").hide();
     };
 
     function decrement() {
@@ -27,8 +29,7 @@ $(document).ready(function() {
             stop(counter);
             $('#timer').html('<h2>Your time is up!</h2');
             showAnswer();
-            index++;
-            time = 30;
+            setTimeout(run, 1000 * 5);
 
         }
     };
@@ -36,8 +37,9 @@ $(document).ready(function() {
     function showAnswer() {
 
         $('#choices').hide();
+        $("#imageBox").show().html("<img src=\"" + triviaQuestions[index].imgsrc + "\">");
         $('#question').html('<h2>The correct answer is ' + triviaQuestions[index].answer + '</h2>');
-        $("#imageBox").html("<img src=\"" + triviaQuestions[index].imgsrc + "\">");
+        index++;
     }
 
     function stop() {
