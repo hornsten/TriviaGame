@@ -5,6 +5,7 @@ $(document).ready(function() {
     isCorrect = false;
     isWrong = false;
     var id;
+    index = 0;
 
     //$('.stop').on('click', stop(time));
 
@@ -13,6 +14,7 @@ $(document).ready(function() {
     function run() {
 
         counter = setInterval(decrement, 1000);
+        write(index);
 
     };
 
@@ -24,12 +26,19 @@ $(document).ready(function() {
         if (time === 0) {
             stop(counter);
             $('#timer').html('<h2>Your time is up!</h2');
-            return;
+            showAnswer();
+            index++;
+            time = 30;
 
-        } else {
-            write();
         }
     };
+
+    function showAnswer() {
+
+        $('#choices').hide();
+        $('#question').html('<h2>The correct answer is ' + triviaQuestions[index].answer + '</h2>');
+        $("#imageBox").html("<img src=\"" + triviaQuestions[index].imgsrc + "\">");
+    }
 
     function stop() {
 
@@ -43,7 +52,7 @@ $(document).ready(function() {
         id: 0,
         wrongChoices: ["Bea Arthur", "Wilma Flintstone", "Weakest Link Lady"],
         answer: "LaVerne V",
-        imgsrc: '0'
+        imgsrc: 'assets/images/grandma.jpeg'
     }, {
 
         question: "Who's your daddy?",
@@ -72,40 +81,20 @@ $(document).ready(function() {
         return '<div class="btn-group-vertical">' + choiceButtons + '</div>';
     }
 
-    function write() {
+    function write(index) {
 
-        for (let i = 0; i < triviaQuestions.length; i++) {
+        for (i = 0; i < 4; i++) {
 
-            setTimeout(function timer() {
-                // $('#question').html(triviaQuestions[i].question);
-
-                // $('#choices').html('<button type="button" class="btn btn-default">' + triviaQuestions[i].answer +
-                //     choices(triviaQuestions[i].wrongChoices) + '</button>');
-                console.log(triviaQuestions[i].id);
-                id = triviaQuestions[i].id;
-
-            }, i * 30000);
-
-            console.log("id is" + id);
+            $('#question').html(triviaQuestions[index].question);
+            $('#choices').html('<button type="button" class="btn btn-default">' + triviaQuestions[index].answer +
+                choices(triviaQuestions[index].wrongChoices) + '</button>');
 
         }
-        $('#question').html(triviaQuestions[id].question);
     }
 
 
-    $('.btn-default').on('click', function() {
-        alert("clicked!");
-        if (isCorrect === true) {
-            return;
 
-        } else {
-
-            $('#question').html("The correct answer is " + triviaQuestions[this].answer + ".");
-            stop();
-
-        }
-
-    });
 
     run();
+
 });
