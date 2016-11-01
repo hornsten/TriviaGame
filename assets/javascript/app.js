@@ -15,7 +15,9 @@ $(document).ready(function() {
         time = 30;
         $('#timer').show();
         $('#choices').show();
-        $("#imageBox").hide();
+        $('#imageBox').hide();
+        $('#start').hide();
+
 
         $('.incorrect').on('click', function() {
             stop();
@@ -121,6 +123,10 @@ $(document).ready(function() {
         }
     }
 
-    run();
+    $('#start').on('click', function() {
+
+        run();
+
+    })
 
 });
