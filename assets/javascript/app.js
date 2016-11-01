@@ -5,42 +5,46 @@ $(document).ready(function() {
     var correct = 0;
     var incorrect = 0;
     var unanswered = 0;
-    var id;
-    index = 0;
+    var index = 0;
 
     function run() {
 
-        counter = setInterval(decrement, 1000);
-        write(index);
-        time = 30;
-        $('#timer').show();
-        $('#choices').show();
-        $('#imageBox').hide();
-        $('#start').hide();
+        if (index > 3) {
+            gameOver();
+
+        } else {
+            counter = setInterval(decrement, 1000);
+            write(index);
+            time = 30;
+            $('#question').show();
+            $('#timer').show();
+            $('#choices').show();
+            $('#imageBox').hide();
+            $('#start').hide();
 
 
-        $('.incorrect').on('click', function() {
-            stop();
-            showAnswer();
-            $('#timer').html('<h2>N to the O to the No, No, NO!</h2>');
-            setTimeout(run, 1000 * 5);
-            incorrect++;
-            console.log(incorrect);
-        });
+            $('.incorrect').on('click', function() {
+                stop();
+                showAnswer();
+                $('#timer').html('<h2>N to the O to the No, No, NO!</h2>');
+                setTimeout(run, 1000 * 5);
+                incorrect++;
 
-        $('.correct').on('click', function() {
-            stop();
-            showAnswer();
-            $('#timer').html('<h2>You got it!</h2>');
-            setTimeout(run, 1000 * 5);
-            correct++;
-            console.log(correct);
-        });
+            });
+
+            $('.correct').on('click', function() {
+                stop();
+                showAnswer();
+                $('#timer').html('<h2>You got it!</h2>');
+                setTimeout(run, 1000 * 5);
+                correct++;
+
+            });
+
+        }
 
 
     };
-
-
 
     function decrement() {
         time--;
@@ -66,11 +70,25 @@ $(document).ready(function() {
         index++;
     }
 
+
     function stop() {
 
         clearInterval(counter);
 
     };
+
+    function gameOver() {
+
+        stop();
+        $('#timer').html('<h2>All right, here\'s how you did: </h2>' + '<ul>' + '<li>' + 'Correct Answers: ' + correct + '</li>' +
+            '<li>' + 'Incorrect Answers: ' + incorrect + '</li>' +
+            '<li>' + 'Unanswered Questions: ' + unanswered + '</li>' +
+            '</ul>');
+        index = 0;
+        $('#question').hide();
+        $('#imageBox').hide();
+        $('#start').show().html('Start Over?');
+    }
 
 
 
@@ -124,9 +142,12 @@ $(document).ready(function() {
     }
 
     $('#start').on('click', function() {
-
+        correct = 0;
+        incorrect = 0;
+        unanswered = 0;
+        index = 0;
         run();
 
-    })
+    });
 
 });
