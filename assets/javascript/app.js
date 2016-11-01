@@ -26,7 +26,7 @@ $(document).ready(function() {
             $('.incorrect').on('click', function() {
                 stop();
                 showAnswer();
-                $('#timer').html('<h2>N to the O to the No, No, NO!</h2>');
+                $('#timer').html('<h2>I\'m afraid not...</h2>');
                 setTimeout(run, 1000 * 5);
                 incorrect++;
 
@@ -94,35 +94,35 @@ $(document).ready(function() {
 
     var triviaQuestions = [{
 
-        question: "Who is your grandmother?",
+        question: 'Who was the first cast member to say, "Live from New York, it\'s Saturday Night!"?',
         id: 0,
-        wrongChoices: ["Bea Arthur", "Wilma Flintstone", "Weakest Link Lady"],
-        answer: "LaVerne V",
-        imgsrc: 'assets/images/grandma.jpeg'
+        wrongChoices: ['Dan Aykroyd', 'John Belushi', 'Jane Curtin'],
+        answer: 'Chevy Chase',
+        imgsrc: 'assets/images/chevy.gif'
     }, {
 
-        question: "Who's your daddy?",
+        question: 'Which 90s "Bad Boy of SNL" was born in Madison, Wisconsin?',
         id: 1,
-        wrongChoices: ["Don Draper", "Fred Rogers", "Dr. Phil"],
-        answer: "Richard P",
-        imgsrc: '1'
+        wrongChoices: ['Chris Rock', 'Adam Sandler', 'David Spade'],
+        answer: 'Chris Farley',
+        imgsrc: 'assets/images/farley.gif'
     }, {
-        question: "Who is your mama?",
+        question: 'What is the least successful film based on an SNL character?',
         id: 2,
-        wrongChoices: ["Mama Cass", "Hoosier Mama", "Mamma Mia"],
-        answer: "Sue P",
-        imgsrc: '2'
+        wrongChoices: ['"MacGruber"', '"The Ladies Man"', '"Stuart Saves His Family"'],
+        answer: '"It\'s Pat"',
+        imgsrc: 'assets/images/pat.gif'
     }, {
-        question: "Who is your sis?",
+        question: 'Which famous SNL writer quit in a rage, then showed up to work on Monday as if nothing happened?',
         id: 3,
-        wrongChoices: ["Twisted Sister", "Sister Sledge", "Sister Christian"],
-        answer: "Shelley K",
-        imgsrc: '3'
+        wrongChoices: ['Conan O\'Brien', 'John Mulaney', 'Tina Fey'],
+        answer: 'Larry David',
+        imgsrc: 'assets/images/larry.gif'
     }];
 
     function choices(wrongs) {
         var choiceButtons = wrongs.map(function(errs) {
-            return '<button type="button" class="btn btn-default incorrect">' + errs + '</button>';
+            return '<button type="button" class="btn btn-lg btn-danger incorrect">' + errs + '</button>';
         }).join("");
 
         return choiceButtons;
@@ -136,7 +136,7 @@ $(document).ready(function() {
         for (i = 0; i < 4; i++) {
 
             $('#question').html(triviaQuestions[index].question);
-            $('#choices').html('<button type="button" class="btn btn-default correct">' + triviaQuestions[index].answer + '</button>' + choices(triviaQuestions[index].wrongChoices));
+            $('#choices').html('<button type="button" class="btn btn-lg btn-danger correct">' + triviaQuestions[index].answer + '</button>' + choices(triviaQuestions[index].wrongChoices));
 
         }
     }

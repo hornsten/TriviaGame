@@ -1,0 +1,32 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+.container-fluid .jumbotron {
+  background-image: url('../images/snl-logo.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #c01;
+}
+
+.container-fluid {
+  min-height: 100%;
+  background-image: url('../images/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+li {
+  font-size: 2vw;
+}
+
+#start,
+.correct,
+.incorrect {
+  padding: 10px 50px;
+}
