@@ -22,11 +22,18 @@ html {
 }
 
 li {
-  font-size: 2vw;
+  font-size: 20px;
 }
 
 #start,
 .correct,
 .incorrect {
   padding: 10px 50px;
+}
+
+#pic {
+  border: 5px solid #fff;
+  height: 50vh;
+  width: auto;
+  max-width: 90vw;
 }

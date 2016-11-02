@@ -24,6 +24,8 @@ $(document).ready(function() {
 
 
             $('.incorrect').on('click', function() {
+
+                console.log(this);
                 stop();
                 showAnswer();
                 $('#timer').html('<h2>I\'m afraid not...</h2>');
@@ -33,6 +35,7 @@ $(document).ready(function() {
             });
 
             $('.correct').on('click', function() {
+                console.log(this);
                 stop();
                 showAnswer();
                 $('#timer').html('<h2>You got it!</h2>');
@@ -65,7 +68,7 @@ $(document).ready(function() {
     function showAnswer() {
 
         $('#choices').hide();
-        $("#imageBox").show().html("<img src=\"" + triviaQuestions[index].imgsrc + "\">");
+        $("#imageBox").show().html("<img id='pic' src=\"" + triviaQuestions[index].imgsrc + "\">");
         $('#question').html('<h2>The correct answer is ' + triviaQuestions[index].answer + '</h2>');
         index++;
     }
@@ -80,28 +83,28 @@ $(document).ready(function() {
     function gameOver() {
 
         stop();
-        $('#timer').html('<h2>All right, here\'s how you did: </h2>' + '<ul>' + '<li>' + 'Correct Answers: ' + correct + '</li>' +
+        $('#timer').html('<h2>Here\'s how you did: </h2>' + '<ul>' + '<li>' + 'Correct Answers: ' + correct + '</li>' +
             '<li>' + 'Incorrect Answers: ' + incorrect + '</li>' +
             '<li>' + 'Unanswered Questions: ' + unanswered + '</li>' +
             '</ul>');
         index = 0;
         $('#question').hide();
         $('#imageBox').hide();
-        $('#start').show().html('Start Over?');
+        $('#start').show().html('Start Over');
     }
 
 
 
     var triviaQuestions = [{
 
-        question: 'Who was the first cast member to say, "Live from New York, it\'s Saturday Night!"?',
+        question: 'Who said, "Live from New York, it\'s Saturday Night!" on the very first episode?',
         id: 0,
-        wrongChoices: ['Dan Aykroyd', 'John Belushi', 'Jane Curtin'],
+        wrongChoices: ['Dan Aykroyd', 'Jane Curtin', 'John Belushi'],
         answer: 'Chevy Chase',
         imgsrc: 'assets/images/chevy.gif'
     }, {
 
-        question: 'Which 90s "Bad Boy of SNL" was born in Madison, Wisconsin?',
+        question: 'Which 90s "Bad Boy of SNL" was born in Madison, WI?',
         id: 1,
         wrongChoices: ['Chris Rock', 'Adam Sandler', 'David Spade'],
         answer: 'Chris Farley',
@@ -113,32 +116,34 @@ $(document).ready(function() {
         answer: '"It\'s Pat"',
         imgsrc: 'assets/images/pat.gif'
     }, {
-        question: 'Which famous SNL writer quit in a rage, then showed up to work on Monday as if nothing happened?',
+        question: 'Which SNL writer quit in a rage, then showed up to work on Monday as if nothing happened?',
         id: 3,
-        wrongChoices: ['Conan O\'Brien', 'John Mulaney', 'Tina Fey'],
+        wrongChoices: ['Tina Fey', 'Conan O\'Brien', 'John Mulaney'],
         answer: 'Larry David',
         imgsrc: 'assets/images/larry.gif'
+
+
     }];
 
-    function choices(wrongs) {
+
+
+    function choices(wrongs, ans) {
         var choiceButtons = wrongs.map(function(errs) {
             return '<button type="button" class="btn btn-lg btn-danger incorrect">' + errs + '</button>';
-        }).join("");
+        }).join('');
 
         return choiceButtons;
-
 
     }
 
 
     function write(index) {
+        var wrongies = choices(triviaQuestions[index].wrongChoices);
+        var righty = '<button type="button" class="btn btn-lg btn-danger correct">' + triviaQuestions[index].answer + '</button>';
 
-        for (i = 0; i < 4; i++) {
+        $('#question').html(triviaQuestions[index].question);
+        $('#choices').html(righty + wrongies);
 
-            $('#question').html(triviaQuestions[index].question);
-            $('#choices').html('<button type="button" class="btn btn-lg btn-danger correct">' + triviaQuestions[index].answer + '</button>' + choices(triviaQuestions[index].wrongChoices));
-
-        }
     }
 
     $('#start').on('click', function() {
