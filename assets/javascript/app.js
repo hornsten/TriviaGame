@@ -23,7 +23,7 @@ $(document).ready(function() {
             $('#start').hide();
 
 
-            $('.btn-danger').on('click', function() {
+            $('.choice-buttons').on('click', function() {
 
                 if ($(this).html() !== triviaQuestions[index].answer) {
                     stop();
@@ -58,7 +58,6 @@ $(document).ready(function() {
             showAnswer();
             setTimeout(run, 1000 * 5);
             unanswered++;
-            console.log(unanswered);
 
         }
     };
@@ -97,40 +96,36 @@ $(document).ready(function() {
 
         question: 'Who said, "Live from New York, it\'s Saturday Night!" on the very first episode?',
         id: 0,
-        wrongChoices: ['Dan Aykroyd', 'Jane Curtin', 'Chevy Chase', 'John Belushi'],
+        options: ['Dan Aykroyd', 'Jane Curtin', 'Chevy Chase', 'John Belushi'],
         answer: 'Chevy Chase',
         imgsrc: 'assets/images/chevy.gif'
     }, {
 
         question: 'Which 90s "Bad Boy of SNL" was born in Madison, WI?',
         id: 1,
-        wrongChoices: ['Chris Farley', 'Chris Rock', 'Adam Sandler', 'David Spade'],
+        options: ['Chris Farley', 'Chris Rock', 'Adam Sandler', 'David Spade'],
         answer: 'Chris Farley',
         imgsrc: 'assets/images/farley.gif'
     }, {
         question: 'What is the least successful film based on an SNL character?',
         id: 2,
-        wrongChoices: ['"MacGruber"', '"The Ladies Man"', '"Stuart Saves His Family"', '"It\'s Pat"'],
+        options: ['"MacGruber"', '"The Ladies Man"', '"Stuart Saves His Family"', '"It\'s Pat"'],
         answer: '"It\'s Pat"',
         imgsrc: 'assets/images/pat.gif'
     }, {
         question: 'Which SNL writer quit in a rage, then showed up to work on Monday as if nothing happened?',
         id: 3,
-        wrongChoices: ['Tina Fey', 'Larry David', 'Conan O\'Brien', 'John Mulaney'],
+        options: ['Tina Fey', 'Larry David', 'Conan O\'Brien', 'John Mulaney'],
         answer: 'Larry David',
         imgsrc: 'assets/images/larry.gif'
 
 
     }];
 
-    var number = triviaQuestions[0].answer;
-    console.log(number);
-    alert(triviaQuestions[0].wrongChoices[number]);
-
 
     function choices(wrongs) {
         var choiceButtons = wrongs.map(function(errs) {
-            return '<button type="button" class="btn btn-lg btn-danger">' + errs + '</button>';
+            return '<button type="button" class="btn btn-lg btn-danger choice-buttons">' + errs + '</button>';
         }).join('');
 
         return choiceButtons;
@@ -140,8 +135,7 @@ $(document).ready(function() {
 
     function write(index) {
 
-        var wrongies = choices(triviaQuestions[index].wrongChoices);
-        // var righty = '<button type="button" class="btn btn-lg btn-danger">' + triviaQuestions[index].answer + '</button>';
+        var wrongies = choices(triviaQuestions[index].options);
 
         $('#question').html(triviaQuestions[index].question);
         $('#choices').html(wrongies);
