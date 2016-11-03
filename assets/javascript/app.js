@@ -1,3 +1,9 @@
+// Global Variables--------------------------------------------
+
+// Functions---------------------------------------------------
+
+// Main Process------------------------------------------------
+
 $(document).ready(function() {
 
     var time = 30;
@@ -21,31 +27,29 @@ $(document).ready(function() {
             $('#choices').show();
             $('#imageBox').hide();
             $('#start').hide();
-
-
-            $('.choice-buttons').on('click', function() {
-
-                if ($(this).html() !== triviaQuestions[index].answer) {
-                    stop();
-                    showAnswer();
-                    $('#timer').html('<h2>I\'m afraid not...</h2>');
-                    setTimeout(run, 1000 * 5);
-                    incorrect++;
-                } else {
-                    stop();
-                    showAnswer();
-                    $('#timer').html('<h2>You got it!</h2>');
-                    setTimeout(run, 1000 * 5);
-                    correct++;
-                }
-            });
-
-
+            $('.choice-buttons').on('click', detectButton);
 
         }
 
-
     };
+
+    function detectButton() {
+
+        if ($(this).html() !== triviaQuestions[index].answer) {
+            stop();
+            showAnswer();
+            $('#timer').html('<h2>I\'m afraid not...</h2>');
+            setTimeout(run, 1000 * 5);
+            incorrect++;
+        } else {
+            stop();
+            showAnswer();
+            $('#timer').html('<h2>You got it!</h2>');
+            setTimeout(run, 1000 * 5);
+            correct++;
+        }
+    }
+
 
     function decrement() {
         time--;
@@ -90,8 +94,6 @@ $(document).ready(function() {
         $('#start').show().html('Start Over');
     }
 
-
-
     var triviaQuestions = [{
 
         question: 'Who said, "Live from New York, it\'s Saturday Night!" on the very first episode?',
@@ -123,9 +125,9 @@ $(document).ready(function() {
     }];
 
 
-    function choices(wrongs) {
-        var choiceButtons = wrongs.map(function(errs) {
-            return '<button type="button" class="btn btn-lg btn-danger choice-buttons">' + errs + '</button>';
+    function choices(buttons) {
+        var choiceButtons = buttons.map(function(selections) {
+            return '<button type="button" class="btn btn-lg btn-danger choice-buttons">' + selections + '</button>';
         }).join('');
 
         return choiceButtons;
@@ -135,10 +137,10 @@ $(document).ready(function() {
 
     function write(index) {
 
-        var wrongies = choices(triviaQuestions[index].options);
+        var picks = choices(triviaQuestions[index].options);
 
         $('#question').html(triviaQuestions[index].question);
-        $('#choices').html(wrongies);
+        $('#choices').html(picks);
 
     }
 
