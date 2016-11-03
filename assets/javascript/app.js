@@ -34,7 +34,7 @@ var triviaQuestions = [{
     imgsrc: 'assets/images/larry.gif'
 
 }, {
-    question: 'Christopher Walken\'s character "The Bruce Dickinson" had a fever. What was the only prescription?',
+    question: '"The Bruce Dickinson" had a fever. What was the only prescription?',
     id: 4,
     options: ['More Advil', 'More Whiskey', 'More Ramen', 'More Cowbell'],
     answer: 'More Cowbell',
@@ -60,13 +60,13 @@ var triviaQuestions = [{
 }, {
     question: 'When does Mary Catharine Gallagher put her fingers under her arms and just smell them like that?',
     id: 8,
-    options: ['When she\'s nervous', 'When she\'s happy', 'When she\'s hungry', 'When she\'s about to jump'],
+    options: ['When she\'s nervous', 'When she\'s happy', 'When she\'s hungry', 'When she needs a boost'],
     answer: 'When she\'s nervous',
     imgsrc: 'assets/images/mary.gif'
 }, {
     question: 'Roger and Virginia Klarvin are...',
     id: 9,
-    options: ['Actors', 'Novelists', 'Professors', 'Athletes'],
+    options: ['Actors', 'Novelists', 'Professors', 'Interpretive Dancers'],
     answer: 'Professors',
     imgsrc: 'assets/images/lovers.gif'
 
