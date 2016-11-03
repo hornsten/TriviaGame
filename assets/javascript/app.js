@@ -27,18 +27,56 @@ var triviaQuestions = [{
     answer: '"It\'s Pat"',
     imgsrc: 'assets/images/pat.gif'
 }, {
-    question: 'Which SNL writer quit in a rage, then showed up to work on Monday as if nothing happened?',
+    question: 'Which SNL writer quit in a rage, then showed up to work the next morning as if nothing happened?',
     id: 3,
-    options: ['Tina Fey', 'Larry David', 'Conan O\'Brien', 'John Mulaney'],
+    options: ['Tina Fey', 'Larry David', 'Conan O\'Brien', 'Stephen Colbert'],
     answer: 'Larry David',
     imgsrc: 'assets/images/larry.gif'
+
+}, {
+    question: 'Christopher Walken\'s character "The Bruce Dickinson" had a fever. What was the only prescription?',
+    id: 4,
+    options: ['More Advil', 'More Whiskey', 'More Ramen', 'More Cowbell'],
+    answer: 'More Cowbell',
+    imgsrc: 'assets/images/cowbell.gif'
+}, {
+    question: 'Jimmy Fallon and Justin Timberlake played the main characters for which recurring sketch on "Saturday Night Live?"',
+    id: 5,
+    options: ['"Wayne\'s World"', '"Benny\'s vs. Omeletteville"', '"Jarret\'s Room"', '"The Barry Gibb Talk Show"'],
+    answer: '"The Barry Gibb Talk Show"',
+    imgsrc: 'assets/images/gibbs.gif'
+}, {
+    question: 'Which SNL star brought such sketches as Gilly and The Californians to life?',
+    id: 6,
+    options: ['Tina Fey', 'Ana Gasteyer', 'Kristen Wiig', 'Amy Poehler'],
+    answer: 'Kristen Wiig',
+    imgsrc: 'assets/images/kristen.gif'
+}, {
+    question: 'Which musical group played in the 1997 sketch "20,000 Leagues Under the Prom"?',
+    id: 7,
+    options: ['Promp and Circumstance', 'Garth and Kat', 'Mother Lover', 'Marty and Bobbi Culp'],
+    answer: 'Marty and Bobbi Culp',
+    imgsrc: 'assets/images/culps.gif'
+}, {
+    question: 'When does Mary Catharine Gallagher put her fingers under her arms and just smell them like that?',
+    id: 8,
+    options: ['When she\'s nervous', 'When she\'s happy', 'When she\'s hungry', 'When she\'s about to jump'],
+    answer: 'When she\'s nervous',
+    imgsrc: 'assets/images/mary.gif'
+}, {
+    question: 'Roger and Virginia Klarvin are...',
+    id: 9,
+    options: ['Actors', 'Novelists', 'Professors', 'Athletes'],
+    answer: 'Professors',
+    imgsrc: 'assets/images/lovers.gif'
+
 }];
 
 // Functions---------------------------------------------------
 
 function run() {
 
-    if (index > 3) {
+    if (index > 9) {
         gameOver();
 
     } else {
@@ -83,14 +121,14 @@ function detectButton() {
         showAnswer();
         $('#yes-no').html('<h2>I\'m afraid not...</h2>');
         $('#yes-no').show();
-        setTimeout(run, 1000 * 5);
+        setTimeout(run, 1000 * 4);
         incorrect++;
     } else {
         stop();
         showAnswer();
         $('#yes-no').html('<h2>You got it!</h2>');
         $('#yes-no').show();
-        setTimeout(run, 1000 * 5);
+        setTimeout(run, 1000 * 4);
         correct++;
     }
 };

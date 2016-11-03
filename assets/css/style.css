@@ -26,9 +26,11 @@ li {
 }
 
 #start,
-.correct,
-.incorrect {
-  padding: 10px 50px;
+.btn-group-lg,
+.btn-lg,
+.btn-danger,
+.choice-buttons {
+  padding: 10px 70px;
 }
 
 #pic {
